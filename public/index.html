@@ -12,31 +12,71 @@
       integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
       crossorigin="anonymous"
     />
+
+        <!-- Favicon icon -->
+        <link rel="icon" type="image/png" sizes="16x16" href="../assets/images/favicon.png">
+        <title>Sala de Chat</title>
+        <!-- Bootstrap Core CSS -->
+        <link href="assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+        <!-- page css -->
+        <link href="css/pages/login-register-lock.css" rel="stylesheet">
+        <!-- Custom CSS -->
+        <link href="css/style.css" rel="stylesheet">
+    
+        <!-- You can change the theme colors from here -->
+        <link href="css/colors/default-dark.css" id="theme" rel="stylesheet">
     
 </head>
 
-<body>
-    
-    <form action="chat.html" class="form-group col-md-6 m-auto" >
-        <h1 class="text-center text-primary">Chat</h1>
-        <input type="text" name="nombre" id="nombre" placeholder="nombre" class="form-control mb-2" required>
 
-        <select name="sala" class="form-control mb-2" id="sala" placeholder="sala" >
-            <option value="">Selecciona</option>
-            <option value="Juegos">Juegos</option>
-            <option value="Universidad">Universidad</option>
-            <option value="Comida">Comida</option>
-            <option value="Ejercicio">Ejercicio</option>
-            <option value="Redes social">Redes social</option>
-            <option value="Todos">Todos</option>
-        </select>
-        <div class="d-grid">
-            <button type="submit" name="" class="btn btn-outline-success    ">
-                ingresar
-            </button>
+<body class="card-no-border">
+    <!-- ============================================================== -->
+    <!-- Preloader - style you can find in spinners.css -->
+    <!-- ============================================================== -->
+    <div class="preloader">
+        <div class="loader">
+            <div class="loader__figure"></div>
+            <p class="loader__label">Cargando Chat...</p>
         </div>
-        
-    </form>
+    </div>
+    <!-- ============================================================== -->
+    <!-- Main wrapper - style you can find in pages.scss -->
+    <!-- ============================================================== -->
+    <section id="wrapper">
+        <div class="login-register" style="background-image:url(../assets/images/background/login-register.jpg);">
+            <div class="login-box card">
+                <div class="card-body">
+                    <form class="form-horizontal form-material" id="loginform" action="chat.html">
+                        <h3 class="box-title m-b-20">Ingresar al Chat</h3>
+                        <div class="form-group ">
+                            <div class="col-xs-12">
+                                <input class="form-control" type="text" required="" placeholder="Nombre de usuario" name="nombre"> </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-xs-12">
+                                <select name="sala" class="form-control mb-2" id="sala" placeholder="sala" >
+                                    <option value="">Selecciona</option>
+                                    <option value="Juegos">Juegos</option>
+                                    <option value="Universidad">Universidad</option>
+                                    <option value="Comida">Comida</option>
+                                    <option value="Ejercicio">Ejercicio</option>
+                                    <option value="Redes social">Redes social</option>
+                                    <option value="Todos">Todos</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group text-center">
+                            <div class="col-xs-12 p-b-20">
+                                <button class="btn btn-block btn-lg btn-info btn-rounded" type="submit">Ingresar al chat</button>
+                            </div>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </section>
 
 
     <script
@@ -44,6 +84,27 @@
       integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
       crossorigin="anonymous"
     ></script>
+
+        <!-- ============================================================== -->
+    <!-- End Wrapper -->
+    <!-- ============================================================== -->
+    <!-- ============================================================== -->
+    <!-- All Jquery -->
+    <!-- ============================================================== -->
+    <script src="../assets/plugins/jquery/jquery.min.js"></script>
+    <!-- Bootstrap tether Core JavaScript -->
+    <script src="../assets/plugins/bootstrap/js/popper.min.js"></script>
+    <script src="../assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+    <!--Custom JavaScript -->
+    <script type="text/javascript">
+        $(function() {
+            $(".preloader").fadeOut();
+        });
+        $(function() {
+            $('[data-toggle="tooltip"]').tooltip()
+        });
+    </script>
+
 </body>
 
 </html>
