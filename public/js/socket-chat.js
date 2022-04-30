@@ -26,13 +26,13 @@ socket.on('disconnect', function() {
 });
 
 
-// Enviar información
-socket.emit('enviarMensaje', {
-    usuario: 'Jdvpl',
-    mensaje: 'Hola Mundo'
-}, function(resp) {
-    console.log('respuesta server: ', resp);
-});
+// // Enviar información
+// socket.emit('crearMensaje', {
+//     usuario: 'Jdvpl',
+//     mensaje: 'Hola Mundo'
+// }, (resp)=> {
+//     console.log('respuesta server: ', resp);
+// });
 
 // Escuchar información
 socket.on('crearMensaje', (mensaje) =>{
