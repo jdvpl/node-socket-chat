@@ -20,7 +20,8 @@ class Users{
   }
 
   getPersonasPorSala(sala){
-
+    let personasEnSala=this.personas.filter(persona=>persona.sala===sala);
+    return personasEnSala;
   }
 
   borrarPersona(id){

@@ -14,24 +14,24 @@ io.on('connection', (socket) => {
         }
         socket.join(data.sala);
 
-        let personas=users.agregarPersona(socket.id,data.nombre,data.sala);
+        users.agregarPersona(socket.id,data.nombre,data.sala);
 
-        socket.broadcast.emit('listaPersonas',users.getPersonas());
-        callback(personas);
+        socket.broadcast.to(data.sala).emit('listaPersonas',users.getPersonasPorSala(data.sala));
+        callback(users.getPersonasPorSala(data.sala));
     })
 
     socket.on('disconnect',()=>{
         let personaBorrada= users.borrarPersona(socket.id);
         
-        socket.broadcast.emit('crearMensaje',crearMensaje('Admin',`${personaBorrada.nombre} abandono el chat`));
-        socket.broadcast.emit('listaPersonas',users.getPersonas());
+        socket.broadcast.to(personaBorrada.sala).emit('crearMensaje',crearMensaje('Admin',`${personaBorrada.nombre} abandono el chat`));
+        socket.broadcast.to(personaBorrada.sala).emit('listaPersonas',users.getPersonasPorSala(personaBorrada.sala));
 
     })
 
     socket.on('crearMensaje',(data)=>{
         let persona=users.getPersona(socket.id);
         let mensjae= crearMensaje(persona.nombre,data.mensaje);
-        socket.broadcast.emit('crearMensaje',mensjae);
+        socket.broadcast.to(persona.sala).emit('crearMensaje',mensjae);
     })
 
     // mensaje privados
