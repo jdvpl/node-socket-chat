@@ -28,10 +28,12 @@ io.on('connection', (socket) => {
 
     })
 
-    socket.on('crearMensaje',(data)=>{
+    socket.on('crearMensaje',(data,callback)=>{
         let persona=users.getPersona(socket.id);
         let mensjae= crearMensaje(persona.nombre,data.mensaje);
         socket.broadcast.to(persona.sala).emit('crearMensaje',mensjae);
+
+        callback(mensjae);
     })
 
     // mensaje privados

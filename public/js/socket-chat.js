@@ -20,23 +20,14 @@ socket.on('connect', function() {
 
 // escuchar
 socket.on('disconnect', function() {
-
     console.log('Perdimos conexión con el servidor');
-
 });
 
 
-// // Enviar información
-// socket.emit('crearMensaje', {
-//     usuario: 'Jdvpl',
-//     mensaje: 'Hola Mundo'
-// }, (resp)=> {
-//     console.log('respuesta server: ', resp);
-// });
 
 // Escuchar información
 socket.on('crearMensaje', (mensaje) =>{
-    console.log(mensaje);
+    renderizarMensaje(mensaje);
 });
 
 // escuchar cuando un usuario entra o sale del hcat
