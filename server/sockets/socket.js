@@ -6,13 +6,15 @@ const users=new Users();
 io.on('connection', (socket) => {
 
     socket.on('entrarChat',(data,callback)=>{
-        if(!data.nombre){
+        if(!data.nombre || !data.sala){
             return callback({
                 error:true,
-                msg:'El nombre es necesario'
+                msg:'El nombre/sala es necesario'
             });
         }
-        let personas=users.agregarPersona(socket.id,data.nombre);
+        socket.join(data.sala);
+
+        let personas=users.agregarPersona(socket.id,data.nombre,data.sala);
 
         socket.broadcast.emit('listaPersonas',users.getPersonas());
         callback(personas);

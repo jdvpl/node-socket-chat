@@ -3,9 +3,9 @@ class Users{
   constructor(){
     this.personas=[];
   }
-  agregarPersona(id,nombre){
+  agregarPersona(id,nombre,sala){
     let persona={
-      id,nombre
+      id,nombre,sala
     }
     this.personas.push(persona);
     return this.personas;
