@@ -13,9 +13,8 @@ var user={
 }
 
 socket.on('connect', function() {
-    console.log('Conectado al servidor');
-    socket.emit('entrarChat',user,(res)=>{
-        console.log(res)
+        socket.emit('entrarChat',user,(res)=>{
+        renderizarUser(res);
     })
 });
 
@@ -42,7 +41,7 @@ socket.on('crearMensaje', (mensaje) =>{
 
 // escuchar cuando un usuario entra o sale del hcat
 socket.on('listaPersonas', (personas) =>{
-    console.log( personas);
+    renderizarUser( personas);
 });
 
 // mensaje privado
