@@ -11,3 +11,9 @@
   Diseño del login
   Notificaciones de entrada de usuarios y salida de usuarios
 ```
+
+### crear tag en github
+
+```
+  git tag -a v1.0 -m "chat finalizado"
+```
