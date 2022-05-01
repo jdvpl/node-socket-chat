@@ -17,13 +17,14 @@ io.on('connection', (socket) => {
         users.agregarPersona(socket.id,data.nombre,data.sala);
 
         socket.broadcast.to(data.sala).emit('listaPersonas',users.getPersonasPorSala(data.sala));
+        socket.broadcast.to(data.sala).emit('crearMensaje',crearMensaje('Admin',`${data.nombre} se unio`));
         callback(users.getPersonasPorSala(data.sala));
     })
 
     socket.on('disconnect',()=>{
         let personaBorrada= users.borrarPersona(socket.id);
         
-        socket.broadcast.to(personaBorrada.sala).emit('crearMensaje',crearMensaje('Admin',`${personaBorrada.nombre} abandono el chat`));
+        socket.broadcast.to(personaBorrada.sala).emit('crearMensaje',crearMensaje('Admin',`${personaBorrada.nombre} salió`));
         socket.broadcast.to(personaBorrada.sala).emit('listaPersonas',users.getPersonasPorSala(personaBorrada.sala));
 
     })

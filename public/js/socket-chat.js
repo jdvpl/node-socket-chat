@@ -27,7 +27,8 @@ socket.on('disconnect', function() {
 
 // Escuchar información
 socket.on('crearMensaje', (mensaje) =>{
-    renderizarMensaje(mensaje);
+    renderizarMensaje(mensaje,false);
+    scrollBottom();
 });
 
 // escuchar cuando un usuario entra o sale del hcat

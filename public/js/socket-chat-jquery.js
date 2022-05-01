@@ -58,27 +58,78 @@ formEnviar.on('submit',(e)=>{
       mensaje: mensaje
   }, (mensaje)=>{
       txtMensaje.val('').focus();
-      renderizarMensaje(mensaje);
+      renderizarMensaje(mensaje,true);
+      scrollBottom();
   });
 
 })
 
 
-const renderizarMensaje=(mensaje) => {
+const renderizarMensaje=(mensaje,yo) => {
   let html = '';
-  html +=
-  `<li class="animated fadeIn">
-  <div class="chat-img">
-    <img src="assets/images/users/1.jpg" alt="user" />
-  </div>
+
+  var fecha=new Date(mensaje.fecha);
+  var hora=fecha.getHours()+':'+fecha.getMinutes()+':'+fecha.getSeconds();
+  var adminClass = 'info';
+
+  if(mensaje.nombre=='Admin') {
+    adminClass = 'danger';
+  }
+  if(yo){
+
+    html +=
+  `
+  <li class="reverse">
   <div class="chat-content">
     <h5>${mensaje.nombre}</h5>
-    <div class="box bg-light-info">
+    <div class="box bg-light-inverse">
       ${mensaje.mensaje}
     </div>
   </div>
-  <div class="chat-time">10:56 am</div>
-</li>`
+  <div class="chat-img">
+    <img src="assets/images/users/5.jpg" alt="user" />
+  </div>
+  <div class="chat-time">${hora}</div>
+</li>
+  `;
+
+
+  }else{
+    console.log("hola")
+    html +=
+    `<li class="animated fadeIn">`
+
+    if(mensaje.nombre !=='Admin'){
+      html+=  '<div class="chat-img"><img src="assets/images/users/1.jpg" alt="user" /></div>';
+    }
+
+    html+=`<div class="chat-content">
+      <h5>${mensaje.nombre}</h5>
+      <div class="box bg-light-${adminClass}">
+        ${mensaje.mensaje}
+      </div>
+    </div>
+    <div class="chat-time">${hora}</div>
+  </li>`;
+  }
 
 divChatbox.append(html)
+}
+
+
+const scrollBottom =()=> {
+
+  // selectors
+  var newMessage = divChatbox.children('li:last-child');
+
+  // heights
+  var clientHeight = divChatbox.prop('clientHeight');
+  var scrollTop = divChatbox.prop('scrollTop');
+  var scrollHeight = divChatbox.prop('scrollHeight');
+  var newMessageHeight = newMessage.innerHeight();
+  var lastMessageHeight = newMessage.prev().innerHeight() || 0;
+
+  if (clientHeight + scrollTop + newMessageHeight + lastMessageHeight >= scrollHeight) {
+      divChatbox.scrollTop(scrollHeight);
+  }
 }
