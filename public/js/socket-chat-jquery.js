@@ -43,7 +43,6 @@ const renderizarUser=(personas)=>{
 divUsuarios.on('click','a',function(){
   var id=$(this).data('id');
   if(!id)return;
-  console.log(id)
 })
 
 formEnviar.on('submit',(e)=>{
@@ -95,7 +94,6 @@ const renderizarMensaje=(mensaje,yo) => {
 
 
   }else{
-    console.log("hola")
     html +=
     `<li class="animated fadeIn">`
 
